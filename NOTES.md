@@ -20,3 +20,5 @@ const token = await Token.deployed()
 2.
 
 
+truffle tests 
+---

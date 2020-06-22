@@ -14,7 +14,8 @@ contract Token is ERC20, AccessControl {
     uint256 private endTime;
 
     modifier whenOpen() {
-        require(now > startTime && now <= endTime);
+        require(now > startTime && now <= endTime,
+        "Window is closed");
         _;
     }
 
@@ -34,5 +35,9 @@ contract Token is ERC20, AccessControl {
 
     function isWindowOpen() public view returns(bool) {
         return now > startTime && now <= endTime;
+    }
+
+    function transfer(address recipient, uint256 amount) public override whenOpen returns(bool){
+        require(super.transfer(recipient, amount), "error for transfer");
     }
 }
