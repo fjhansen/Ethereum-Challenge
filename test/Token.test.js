@@ -4,9 +4,6 @@ require('chai')
 .use(require('chai-as-promised'))
 .should()
 
-// beforeEach(async () => {
-
-// })
 
 contract('Token', (accounts) => {
     describe('deployment', () => {
