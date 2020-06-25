@@ -37,6 +37,14 @@ contract Token is ERC20, AccessControl {
         return now > startTime && now <= endTime;
     }
 
+    function starttime() public view returns(uint) {
+        return startTime;
+    }
+
+    function endtime() public view returns(uint) {
+        return endTime;
+    }
+
     function transfer(address recipient, uint256 amount) public override whenOpen returns(bool){
         require(super.transfer(recipient, amount), "error for transfer");
     }

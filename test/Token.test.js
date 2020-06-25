@@ -4,6 +4,10 @@ require('chai')
 .use(require('chai-as-promised'))
 .should()
 
+// beforeEach(async () => {
+
+// })
+
 contract('Token', (accounts) => {
     describe('deployment', () => {
         it('tracks the name', async () => {
@@ -13,6 +17,25 @@ contract('Token', (accounts) => {
             const name = await token.name()
             // Check if token name is 'TOKEN'
             name.should.equal("TOKEN")
+        })
+    })
+
+    describe('time constraints', () => {
+        it('has startTime', async () => {
+            let token = await Token.deployed();
+            
+            const start = (await token.starttime()).toNumber();
+
+            start.should.equal(1595389544)
+        })
+
+        it('has endTime', async () => {
+            let token = await Token.deployed();
+
+            const end = (await token.endtime()).toNumber()
+
+            end.should.equal(1595476244)
+
         })
     })
 })
